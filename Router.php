@@ -39,7 +39,6 @@ class Rout{
                             require_once ('views/error.php');
                         }
                     }
-                    
                     // PostController
                     elseif ($_GET['controller'] == 'PostController') {
                         // Affiche la liste des billets en ligne
@@ -88,6 +87,55 @@ class Rout{
                                 require_once ('views/error.php');
                             }
                         }
+                    }
+                    // Actions possibles depuis la page d'administration (connexion obligatoire)
+                    elseif (isset($_SESSION) && !empty($_SESSION) && (($_SESSION['level'] == 0) || ($_SESSION['level'] == 1))) {
+                        // AdminController
+                        if ($_GET['controller'] == 'AdminController') {
+                            // Affiche les billets en ligne et les commentaires signalés
+                            if ($_GET['action'] == 'indexAction') {
+                                $newAdminController = new AdminController();
+                                $newAdminController->indexAction();
+                            }
+                            // Publier un nouveau billet
+                            elseif ($_GET['action'] == 'postAction') {
+                                // Conditions ternaires
+                                $title = isset($_POST['title']) ? strip_tags($_POST['title']) : NULL;
+                                $content = isset($_POST['content']) ? strip_tags($_POST['content']) : NULL;
+                                $newAdminController = new AdminController();
+                                $newAdminController->postAction($title, $content);
+                            }
+                            elseif ($_SESSION['level'] == 0){
+                                // Modifier un billet
+                                if ($_GET['action'] == 'editPostAction') {
+                                    $newAdminController = new AdminController();
+                                    $newAdminController->editPostAction($_GET['id']);
+                                }
+                                // Supprimer un billet
+                                elseif ($_GET['action'] == 'deletePostAction') {
+                                    $newAdminController = new AdminController();
+                                    $newAdminController->deletePostAction($_GET['id']);
+                                }
+                                // Modifier un commentaire signalé
+                                elseif ($_GET['action'] == 'editCommentAction') {
+                                    $newAdminController = new AdminController();
+                                    $newAdminController->editCommentAction($_GET['id']);
+                                }
+                                // Supprimer un commentaire signalé
+                                elseif ($_GET['action'] == 'deleteCommentAction') {
+                                    $newAdminController = new AdminController();
+                                    $newAdminController->deleteCommentAction($_GET['id']);
+                                }
+                            }
+                            // Si une autre action est tapée dans l'URL
+                            else {
+                                require_once ('views/errorLevel.php');
+                            }
+                        }
+                    }
+                    // Si on tente de se connecter sans être identifié
+                    else {
+                        require_once ('views/error.php');
                     }
                 }
                 // Si on tente d'acéder à un autre controller
