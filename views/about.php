@@ -1,10 +1,10 @@
 <!-- Titre de la page -->
-<?php $title = 'À propos de l\'auteur'; ?>
+<?php $title = 'A propos de moi'; ?>
 
 <!-- Contenu de la page -->
 <?php ob_start(); ?>
 
-<h1>À propos de l'auteur</h1>
+<h1>A propos de moi</h1>
 <br/>
 <br/>
 <br/>

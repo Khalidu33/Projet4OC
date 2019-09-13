@@ -15,9 +15,9 @@ class UserController {
             $newMessage = new Message();
             if (!empty($_POST['pseudo']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['email']))
             {
-                // Si la longueur du pseudo excède 255 caractères
+                // Si la longueur du pseudo excède 50 caractères
                 $pseudoLength = strlen($pseudo);
-                if ($pseudoLength <= 255)
+                if ($pseudoLength <= 50)
                 {
                     // Vérifie la syntaxe de l'adresse mail
                     if(filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -37,8 +37,15 @@ class UserController {
                                 {
                                     if ($_POST['password'] == $_POST['password_confirm'])
                                     {
-                                        $newUserManager->addUser($pseudo, $password, $email);
-                                        $newMessage->setSuccess("<p>Votre compte a bien été crée ! <a href='?controller=UserController&action=loginAction'>Me connecter</a></p>");
+                                        if (strlen($password) < 8)
+                                        {
+                                            $newUserManager->addUser($pseudo, $password, $email);
+                                            $newMessage->setSuccess("<p>Votre compte a bien été crée ! <a href='?controller=UserController&action=loginAction'>Me connecter</a></p>");
+                                        }
+                                        else
+                                        {
+                                            $newMessage->setError("<p>Votre mot de passe doit contenir un minimum de 8 caractères!</p>");
+                                        }
                                     }
                                     else
                                     {

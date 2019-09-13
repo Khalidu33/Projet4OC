@@ -25,7 +25,7 @@
                     <td><a href="?controller=PostController&action=showAction&id=<?= $comment->getPostId() ?>" title="Lire le commentaire"><?= substr (nl2br(html_entity_decode($comment->getContent())), 0, 25) . '...' ?></a></td>
                     <td><?= $comment->getAddedDatetime() ?></td>
                     <td><?= $comment->getUpdatedDatetime() ?></td>
-                    <td><?= $comment->getAlert() ?></td>
+                    <td><?= $comment->getAlert()?></td>
                     <td>
                         <a href="?controller=AdminController&action=editCommentAction&id=<?= $comment->getId() ?>" title="Modifier le commentaire">
                             <i class="fas fa-pencil-alt"></i>

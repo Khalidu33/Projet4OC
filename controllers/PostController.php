@@ -11,7 +11,23 @@ class PostController {
     public function indexAction()
     {
         $newPostManager = new PostManager();
-        $posts = $newPostManager->getPreviousPosts();
+        $total = $newPostManager->countArticle();
+        $perPage = 3; 
+        $nbPage = ceil($total/$perPage);
+        if(isset($_GET['p']) && !empty($_GET['p']) && ctype_digit($_GET['p']) == 1){
+            if($_GET['p'] > $nbPage){
+                $current = $nbPage;
+            }
+            else{
+                $current = $_GET['p'];
+            }
+        }
+        else{
+            $current = 1;
+        }
+        $firestOfPage = ($current-1)*$perPage;
+        $posts = $newPostManager->getPreviousPosts($firestOfPage,$perPage);
+        
         require_once ('views/listPosts.php');
     }
 
@@ -41,5 +57,5 @@ class PostController {
             // Vue
             require_once ('views/postView.php');
         }
-    }
+    }    
 }

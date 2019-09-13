@@ -1,14 +1,3 @@
-<!-- Message de bienvenue -->
-<?php
-if (isset($_SESSION) && !empty($_SESSION))
-{
-    echo "<p class=\"session\">Vous êtes connecté ! Bonjour " . $_SESSION['pseudo'] . " !</p>";
-}
-else {
-    echo "<p class=\"session\"> Bonjour visiteur !</p>";
-}
-?>
-
 <!-- Message d'erreur (rouge) -->
 <?php
 if (isset($GLOBALS['alert']) && !empty($GLOBALS['alert']))

@@ -1,7 +1,7 @@
 <footer class="footer">
     <!--Copyright-->
     <div class="footer-copyright py-3 text-center">
-        <strong>© 2019 Copyright : <a href="?controller=PostController&action=about" title="À propos de l'auteur">Jean Forteroche</a></strong>
+        <strong>© 2019 Copyright : <a href="?controller=PostController&action=legalNotice" title="A propos de moi">Mentions légales</a></strong>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -20,6 +20,21 @@ h1 {
     font-size: 5rem;
 }
 
+header{
+    height: 21em;
+    overflow-y: hidden;
+}
+
+.title{
+    margin-top: 2em;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    font-weight: bold;
+}
+.presentation{
+    text-align: center;
+    font-size: 17px;
+}
 @media screen and (min-width: 640px) {
     #accordionPosts {
         display: none;
@@ -35,5 +50,17 @@ h1 {
     }
     #reportedComments {
         display: none;
+    }
+    .title{
+        margin-top: 127px !important;
+        font-size: 3em;
+    }
+}
+@media (max-width: 768px) {
+   .container-fluid {
+        height: 17em;
+    }
+    .title {
+        margin-top: 1em;
     }
 }

@@ -11,7 +11,7 @@ class PostManager extends Manager {
         $newManager = new Manager();
         $db = $newManager->dbConnect();
         // Requête
-        $request = $db->query('SELECT id, author, title, content, DATE_FORMAT(added_datetime, \'le %d/%m/%Y à %Hh%i\') AS added_datetime_fr, DATE_FORMAT(updated_datetime, \'le %d/%m/%Y à %Hh%i\') AS updated_datetime_fr FROM posts ORDER BY added_datetime DESC');
+        $request = $db->query('SELECT id, author, title, content, DATE_FORMAT(added_datetime, \'le %d/%m/%Y à %Hh%i\') AS added_datetime_fr, DATE_FORMAT(updated_datetime, \'le %d/%m/%Y à %Hh%i\') AS updated_datetime_fr FROM posts');
         // Résultat
         $request->execute(array());
         $result = $request->fetchAll();
@@ -24,13 +24,27 @@ class PostManager extends Manager {
     }
 
     // Obtenir la liste de TOUS les billets SAUF le dernier en date
-    public function getPreviousPosts()
+    public function countArticle()
+    {
+        $newManager = new Manager();
+        $db = $newManager->dbConnect();
+        $req = $db->query('SELECT COUNT(*) AS total FROM posts');
+        $total = $req->fetch();
+        $total = $total['total'];
+        return $total;
+    }   
+    
+    // Obtenir la liste de TOUS les billets SAUF le dernier en date
+    public function getPreviousPosts($firestOfPage,$perPage)
     {
         // Connexion à la base de données
         $newManager = new Manager();
         $db = $newManager->dbConnect();
         // Requête
-        $request = $db->query('SELECT id, author, title, content, DATE_FORMAT(added_datetime, \'%d/%m/%Y à %Hh%i\') AS added_datetime_fr, updated_datetime FROM posts ORDER BY added_datetime DESC LIMIT 1, 99999');
+        $request = $db->prepare("SELECT id, author, title, content, DATE_FORMAT(added_datetime, '%d/%m/%Y à %Hh%i') AS added_datetime_fr, updated_datetime FROM posts ORDER BY id ASC LIMIT :firestOfPage , :perPage");
+        $request-> bindParam(':firestOfPage',$firestOfPage,\PDO::PARAM_INT);
+        $request-> bindParam(':perPage',$perPage,\PDO::PARAM_INT);
+        $request-> execute();
         return $request;
     }
 

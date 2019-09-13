@@ -8,7 +8,7 @@ class UserManager extends Manager {
     public function addUser($pseudo, $password, $email)
     {
         $db = $this->dbConnect();
-        $request = $db->prepare('INSERT INTO users (pseudo, password, email, level) VALUES (?, ?, ?, 2)');
+        $request = $db->prepare('INSERT INTO users (pseudo, password, email, level) VALUES (?, ?, ?, 1)');
         $request->execute(array($pseudo, $password, $email));
     }
 

@@ -4,8 +4,15 @@
 <!-- Contenu de la page -->
 <?php ob_start(); ?>
 
-<h1>Billet simple pour l'Alaska</h1>
-<br />
+<div class="presentation">
+    <h2>Bienvenue !</h2>
+    <p>Je vous souhaite la bienvenue sur ce blog spécialement créé pour mon nouveau roman "Billet simple pour l'Alaska".
+    J'ai décidé de publié ce nouveau roman par étapes que vous pourrez suivre régulièrement ici. Je vous souhaite une bonne lecture.
+    </p>
+    <p>- Jean Forteroche -</p>
+</div>
+
+<br/>
 
 <h3>Dernier chapitre publié :</h3>
 <br />

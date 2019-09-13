@@ -60,6 +60,9 @@ class Rout{
                         // Obtenir les informations sur l'auteur
                         elseif ($_GET['action'] == 'about') {
                             require_once 'views/about.php';
+                        }                        // Obtenir les informations sur l'auteur
+                        elseif ($_GET['action'] == 'legalNotice') {
+                            require_once 'views/legalNotice.php';
                         }
                         elseif (isset($_SESSION) && !empty($_SESSION)){
                             // Publier un commentaire
@@ -68,6 +71,7 @@ class Rout{
                                     // Conditions ternaires
                                     $author = isset($_POST['author']) ? strip_tags($_POST['author']) : NULL;
                                     $content = isset($_POST['content']) ? strip_tags($_POST['content']) : NULL;
+                             
                                     $newCommentController = new CommentController();
                                     $newCommentController->addCommentAction($_GET['id'], $author, $content);
                                 } else {

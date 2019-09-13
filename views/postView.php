@@ -12,9 +12,9 @@
 <!-- Billet -->
 <article>
     <h3><?php echo html_entity_decode($post->getTitle()) ?></h3><br />
-    <p align="right">Paru le <?php echo $post->getAddedDatetime() ?></p>
+    <p>Paru le <?php echo $post->getAddedDatetime() ?></p>
     <p><?php echo html_entity_decode($post->getContent()) ?></p>
-    <p align="right"><?php echo html_entity_decode($post->getAuthor()) ?></p><br />
+    <p><?php echo html_entity_decode($post->getAuthor()) ?></p><br />
 </article>
 <hr>
 
