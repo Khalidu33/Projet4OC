@@ -10,12 +10,12 @@
 <form action="?controller=UserController&action=loginAction" method="POST">
 
     <div class="form-group">
-        <label for="">Pseudo :</label>
+        <label>Pseudo :</label>
         <input type="text" name="pseudo" class="form-control">
     </div>
 
     <div class="form-group">
-        <label for="">Mot de passe :</label>
+        <label>Mot de passe :</label>
         <input type="password" name="password" class="form-control">
     </div>
 

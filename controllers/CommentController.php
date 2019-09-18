@@ -37,11 +37,14 @@ class CommentController {
         $newCommentManager = new CommentManager();
         $alertedComment = $newCommentManager->reportComment($id);
         // Gestion des erreurs
-        if ($alertedComment === false) {
+                if ($alertedComment === false) {
             throw new \Exception("Impossible de signaler le commentaire !");
         }
         else {
             header('Location: ?controller=PostController&action=showAction&id=' . $post_id);
         }
-    }
+        
+        $alert = $newCommentManager->getAlert();
+        var_dump($alert);
+    } 
 }

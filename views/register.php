@@ -10,22 +10,22 @@
 <form action="?controller=UserController&action=registerAction" method="POST">
 
     <div class="form-group">
-        <label for="">Pseudo :</label>
+        <label>Pseudo :</label>
         <input type="text" name="pseudo" class="form-control" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>">
     </div>
 
     <div class="form-group">
-        <label for="">Mot de passe :</label>
+        <label>Mot de passe :</label>
         <input type="password" name="password" class="form-control">
     </div>
 
     <div class="form-group">
-        <label for="">Confirmez le mot de passe :</label>
+        <label>Confirmez le mot de passe :</label>
         <input type="password" name="password_confirm" class="form-control">
     </div>
 
     <div class="form-group">
-        <label for="">Email :</label>
+        <label>Email :</label>
         <input type="email" name="email" class="form-control" value="<?php if(isset($email)) { echo $email; } ?>">
     </div>
 
