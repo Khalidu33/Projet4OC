@@ -17,7 +17,7 @@ class Rout{
                         if ($_GET['action'] == 'registerAction') {
                             // Conditions ternaires
                             $pseudo = isset($_POST['pseudo']) ? strip_tags($_POST['pseudo']) : NULL;
-                            $password_hash = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : NULL;
+                            $password_hash = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : NULL;
                             $email = isset($_POST['email']) ? strip_tags($_POST['email']) : NULL;
                             $newUserController = new UserController();
                             $newUserController->register($pseudo, $password_hash, $email);
@@ -93,7 +93,7 @@ class Rout{
                         }
                     }
                     // Actions possibles depuis la page d'administration (connexion obligatoire)
-                    elseif (isset($_SESSION) && !empty($_SESSION) && (($_SESSION['level'] == 0) || ($_SESSION['level'] == 1))) {
+                    elseif (isset($_SESSION) && !empty($_SESSION) && (($_SESSION['level'] == 0))) {
                         // AdminController
                         if ($_GET['controller'] == 'AdminController') {
                             // Affiche les billets en ligne et les commentaires signalés
@@ -109,28 +109,27 @@ class Rout{
                                 $newAdminController = new AdminController();
                                 $newAdminController->postAction($title, $content);
                             }
-                            elseif ($_SESSION['level'] == 0){
-                                // Modifier un billet
-                                if ($_GET['action'] == 'editPostAction') {
-                                    $newAdminController = new AdminController();
-                                    $newAdminController->editPostAction($_GET['id']);
-                                }
-                                // Supprimer un billet
-                                elseif ($_GET['action'] == 'deletePostAction') {
-                                    $newAdminController = new AdminController();
-                                    $newAdminController->deletePostAction($_GET['id']);
-                                }
-                                // Modifier un commentaire signalé
-                                elseif ($_GET['action'] == 'editCommentAction') {
-                                    $newAdminController = new AdminController();
-                                    $newAdminController->editCommentAction($_GET['id']);
-                                }
-                                // Supprimer un commentaire signalé
-                                elseif ($_GET['action'] == 'deleteCommentAction') {
-                                    $newAdminController = new AdminController();
-                                    $newAdminController->deleteCommentAction($_GET['id']);
-                                }
+                            // Modifier un billet
+                            elseif ($_GET['action'] == 'editPostAction') {
+                                $newAdminController = new AdminController();
+                                $newAdminController->editPostAction($_GET['id']);
                             }
+                            // Supprimer un billet
+                            elseif ($_GET['action'] == 'deletePostAction') {
+                                $newAdminController = new AdminController();
+                                $newAdminController->deletePostAction($_GET['id']);
+                            }
+                            // Modifier un commentaire signalé
+                            elseif ($_GET['action'] == 'editCommentAction') {
+                                $newAdminController = new AdminController();
+                                $newAdminController->editCommentAction($_GET['id']);
+                            }
+                            // Supprimer un commentaire signalé
+                            elseif ($_GET['action'] == 'deleteCommentAction') {
+                                $newAdminController = new AdminController();
+                                $newAdminController->deleteCommentAction($_GET['id']);
+                            }
+                                
                             // Si une autre action est tapée dans l'URL
                             else {
                                 require_once ('views/errorLevel.php');

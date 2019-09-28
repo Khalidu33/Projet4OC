@@ -16,17 +16,17 @@
 
     <div class="form-group">
         <label>Mot de passe :</label>
-        <input type="password" name="password" class="form-control">
+        <input type="password" name="password" placeholder="minimum 8 caractères au moins une lettre minuscule, une lettre majuscule, un chiffre, un caractère spéciale" class="form-control">
     </div>
 
     <div class="form-group">
         <label>Confirmez le mot de passe :</label>
-        <input type="password" name="password_confirm" class="form-control">
+        <input type="password" name="password_confirm" placeholder="minimum 8 caractères au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spéciale" class="form-control">
     </div>
 
     <div class="form-group">
         <label>Email :</label>
-        <input type="email" name="email" class="form-control" value="<?php if(isset($email)) { echo $email; } ?>">
+        <input type="email" name="email" placeholder="exemple@hotmail.fr" class="form-control" value="<?php if(isset($email)) { echo $email; } ?>">
     </div>
 
     <button type="submit" class="btn btn-primary">M'inscrire</button>

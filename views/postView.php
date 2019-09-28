@@ -25,7 +25,7 @@ foreach ($comments as $comment) {
     echo "<br />";
     echo "<p>De : " . html_entity_decode($comment->getAuthor()) . ", ajouté le : " . $comment->getAddedDatetime() . "<br />";
     echo html_entity_decode($comment->getContent()) . "<br />";
-    if(isset($_SESSION) && !empty($_SESSION) && ($comment->getAlert() < 3)){
+    if(isset($_SESSION) && !empty($_SESSION) && ($comment->getAlert() < 5)){
         echo '<a href="?controller=PostController&action=alertCommentAction&id=' . $comment->getId() . '&post_id=' . $comment->getPostId() . '" onclick="return(confirm(\'ATTENTION ! Voulez-vous vraiment signaler ce commentaire ?\'))">Signaler</a>';
         echo "<br />";
     }

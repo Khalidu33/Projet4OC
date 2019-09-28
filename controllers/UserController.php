@@ -20,10 +20,10 @@ class UserController {
                 if ($pseudoLength <= 50)
                 {
                     // Vérifie la syntaxe de l'adresse mail
-                    if(filter_var($email, FILTER_VALIDATE_EMAIL))
+                    if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
                     {
                         // Lettres minuscules/majuscules et chifres autorisés seulement
-                        if(preg_match('/^[a-zA-Z0-9]+$/', $pseudo))
+                        if(preg_match("#^[a-zA-Z0-9]+$#", $pseudo))
                         {
                             $newUserManager = new UserManager();
                             $newUserManager->checkUserPseudo($pseudo);
@@ -35,16 +35,22 @@ class UserController {
                                 $checkedUserEmail = $GLOBALS['checkedUserEmail'];
                                 if ($checkedUserEmail == 0)
                                 {
+                                    
+                                    
                                     if ($_POST['password'] == $_POST['password_confirm'])
-                                    {
-                                        if (strlen($password) < 8)
+                                    {                                         
+                                        if (preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$#', $_POST['password']))
                                         {
                                             $newUserManager->addUser($pseudo, $password, $email);
                                             $newMessage->setSuccess("<p>Votre compte a bien été crée ! <a href='?controller=UserController&action=loginAction'>Me connecter</a></p>");
                                         }
                                         else
                                         {
-                                            $newMessage->setError("<p>Votre mot de passe doit contenir un minimum de 8 caractères!</p>");
+                                            $newMessage->setError("<p>Votre mot de passe doit contenir un minimum de 8 caractères!<br/>
+                                            au moins une lettre majuscule!<br/>
+                                            au moins une lettre minuscule!<br/>
+                                            au moins un chiffre!<br/>
+                                            au moins un caractère spéciale!</p>");
                                         }
                                     }
                                     else
@@ -74,7 +80,7 @@ class UserController {
                 }
                 else
                 {
-                    $newMessage->setError("<p>Votre pseudo ne doit pas dépasser 255 caractères !</p>");
+                    $newMessage->setError("<p>Votre pseudo ne doit pas dépasser 50 caractères !</p>");
                 }
             }
             else

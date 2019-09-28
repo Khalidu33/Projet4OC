@@ -11,10 +11,10 @@
         <title><?= $title ?></title>
 
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="public/css/bootstrap.css">
+        <link rel="stylesheet" href="public/css/bootstrapP4.css">
 
         <!-- Style général de la page -->
-        <link rel="stylesheet" href="public/css/style.css">
+        <link rel="stylesheet" href="public/css/styleP4.css">
 
         <!-- FontAwesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
